@@ -9,23 +9,17 @@ using namespace std;
 int getRomanDigitValue(char romanDigit) {
   if (romanDigit == 'I') {
     return 1;
-  }
-  if (romanDigit == 'V') {
+  } if (romanDigit == 'V') {
     return 5;
-  }
-  if (romanDigit == 'X') {
+  } if (romanDigit == 'X') {
     return 10;
-  }
-  if (romanDigit == 'L') {
+  } if (romanDigit == 'L') {
     return 50;
-  }
-  if (romanDigit == 'C') {
+  } if (romanDigit == 'C') {
     return 100;
-  }
-  if (romanDigit == 'D') {
+  } if (romanDigit == 'D') {
     return 500;
-  }
-  if (romanDigit == 'M') {
+  } if (romanDigit == 'M') {
     return 1000;
   }
   return 0;
