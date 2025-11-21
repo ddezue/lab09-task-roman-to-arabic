@@ -54,12 +54,19 @@ int convertToArabic(string romanNumber) {
 int main() {
   string inputRoman;
   int arabicResult;
+  string answer;
 
-  cout << "Enter Roman number: ";
-  cin >> inputRoman;
+  do { 
+    cout << "Enter Roman number: ";
+    cin >> inputRoman;
+      
+    arabicResult = convertToArabic(inputRoman);
+    cout << "Arabic number: " << arabicResult << endl;
+      
+    cout << "Continue? (Y/N)";
+    cin >> answer; 
+  } while (answer == "Y");
   
-  arabicResult = convertToArabic(inputRoman);
-  cout << "Arabic number: " << arabicResult << endl;
-
-  return 0;
+    cout << "GG" << endl;
+    return 0;
 }
