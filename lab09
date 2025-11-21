@@ -35,7 +35,7 @@ int convertToArabic(string romanNumber) {
   result = 0;
   previousValue = 0;
   
-  for (currentPosition = romanNumber.length() - 1; currentPosition >= 0; currentPosition--) {
+  for (currentPosition = romanNumber.length() - 1; currentPosition >= 0; --currentPosition) {
     currentDigit = romanNumber[currentPosition];
     currentValue = getRomanDigitValue(currentDigit);
     
