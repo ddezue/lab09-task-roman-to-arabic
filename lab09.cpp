@@ -31,11 +31,53 @@ int convertToArabic(string romanNumber) {
   int currentPosition;
   char currentDigit;
   int currentValue;
+  int position;
+  int count;
+  int nextPosition;
+  
+  // Check 1: no zero
+  if (romanNumber == "0") {
+    cout << "Error: Roman numeral cannot be zero" << endl;
+    return 0;
+  }
+  
+  // Check 2: I, X, C, M cannot repeat more than 3 times
+  position = 0;
+  while (position < romanNumber.length()) {
+    if (romanNumber[position] == 'I' || romanNumber[position] == 'X' || romanNumber[position] == 'C' || romanNumber[position] == 'M') {
+      count = 1;
+      nextPosition = position + 1;
+
+      while (nextPosition < romanNumber.length() && romanNumber[nextPosition] == romanNumber[position]) {
+        count = count + 1;
+        nextPosition = nextPosition + 1;
+      }
+      
+      if (count > 3) {
+        cout << "Error: Roman digit repeats too many times" << endl;
+        return 0;
+      }
+    }
+    position = position + 1;
+  }
+  
+  // Check 3: V, L, D cannot repeat
+  position = 0;
+  while (position < romanNumber.length() - 1) {
+    if (romanNumber[position] == 'V' || romanNumber[position] == 'L' || romanNumber[position] == 'D') {
+      if (romanNumber[position + 1] == romanNumber[position]) {
+        cout << "Error: Roman digit cannot repeat" << endl;
+        return 0;
+      }
+    }
+    position = position + 1;
+  }
   
   result = 0;
   previousValue = 0;
+  currentPosition = romanNumber.length() - 1;
   
-  for (currentPosition = romanNumber.length() - 1; currentPosition >= 0; --currentPosition) {
+  while (currentPosition >= 0) {
     currentDigit = romanNumber[currentPosition];
     currentValue = getRomanDigitValue(currentDigit);
     
@@ -46,6 +88,7 @@ int convertToArabic(string romanNumber) {
     }
     
     previousValue = currentValue;
+    currentPosition = currentPosition - 1;
   }
   
   return result;
@@ -61,12 +104,15 @@ int main() {
     cin >> inputRoman;
       
     arabicResult = convertToArabic(inputRoman);
-    cout << "Arabic number: " << arabicResult << endl;
+    
+    if (arabicResult != 0) {
+      cout << "Arabic number: " << arabicResult << endl;
+    }
       
     cout << "Continue? (Y/N)";
     cin >> answer; 
   } while (answer == "Y");
   
-    cout << "GG" << endl;
-    return 0;
+  cout << "GG" << endl;
+  return 0;
 }
